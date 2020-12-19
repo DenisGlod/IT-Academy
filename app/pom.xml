@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>by.it-academy</groupId>
-		<artifactId>lesson-2-mvn</artifactId>
+		<artifactId>project</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>app</artifactId>
