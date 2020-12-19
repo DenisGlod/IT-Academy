@@ -2,8 +2,7 @@ package by.itacademy.project.model;
 
 import java.util.Objects;
 
-public class User {
-    private Long id;
+public class User extends AbstractModel {
     private String login;
     private String password;
     private String fio;
@@ -13,21 +12,12 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String login, String password, String fio, Integer age, Role role) {
-        this.id = id;
+    public User(String login, String password, String fio, Integer age, Role role) {
         this.login = login;
         this.password = password;
         this.fio = fio;
         this.age = age;
         this.role = role;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getLogin() {
@@ -71,28 +61,27 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id.equals(user.id) && login.equals(user.login) && password.equals(user.password) && fio.equals(user.fio) && age.equals(user.age) && role == user.role;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, login, password, fio, age, role);
-    }
-
-    @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("User{");
-        sb.append("id=").append(id);
-        sb.append(", login='").append(login).append('\'');
+        sb.append("login='").append(login).append('\'');
         sb.append(", password='").append(password).append('\'');
         sb.append(", fio='").append(fio).append('\'');
         sb.append(", age=").append(age);
         sb.append(", role=").append(role);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(fio, user.fio) && Objects.equals(age, user.age) && role == user.role;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, password, fio, age, role);
     }
 }

@@ -3,28 +3,18 @@ package by.itacademy.project.model;
 import java.util.List;
 import java.util.Objects;
 
-public class Group {
-    private Long id;
+public class Group extends AbstractModel {
     private List<Long> users;
     private List<Long> topics;
     private Long teacherId;
 
-    public Group(Long id) {
+    public Group() {
     }
 
-    public Group(Long id, List<Long> users, List<Long> topics, Long teacherId) {
-        this.id = id;
+    public Group(List<Long> users, List<Long> topics, Long teacherId) {
         this.users = users;
         this.topics = topics;
         this.teacherId = teacherId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<Long> getUsers() {
@@ -52,26 +42,25 @@ public class Group {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Group group = (Group) o;
-        return Objects.equals(id, group.id) && Objects.equals(users, group.users) && Objects.equals(topics, group.topics) && Objects.equals(teacherId, group.teacherId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, users, topics, teacherId);
-    }
-
-    @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Group{");
-        sb.append("id=").append(id);
-        sb.append(", users=").append(users);
+        sb.append("users=").append(users);
         sb.append(", topics=").append(topics);
         sb.append(", teacherId=").append(teacherId);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return Objects.equals(users, group.users) && Objects.equals(topics, group.topics) && Objects.equals(teacherId, group.teacherId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(users, topics, teacherId);
     }
 }

@@ -3,8 +3,7 @@ package by.itacademy.project.model;
 import java.util.Date;
 import java.util.Objects;
 
-public class Salary {
-    private Long id;
+public class Salary extends AbstractModel {
     private Long teacherId;
     private Date date;
     private Integer value;
@@ -12,19 +11,10 @@ public class Salary {
     public Salary() {
     }
 
-    public Salary(Long id, Long teacherId, Date date, Integer value) {
-        this.id = id;
+    public Salary(Long teacherId, Date date, Integer value) {
         this.teacherId = teacherId;
         this.date = date;
         this.value = value;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getTeacherId() {
@@ -52,15 +42,25 @@ public class Salary {
     }
 
     @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Salary{");
+        sb.append("teacherId=").append(teacherId);
+        sb.append(", date=").append(date);
+        sb.append(", value=").append(value);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Salary salary = (Salary) o;
-        return Objects.equals(id, salary.id) && Objects.equals(teacherId, salary.teacherId) && Objects.equals(date, salary.date) && Objects.equals(value, salary.value);
+        return Objects.equals(teacherId, salary.teacherId) && Objects.equals(date, salary.date) && Objects.equals(value, salary.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, teacherId, date, value);
+        return Objects.hash(teacherId, date, value);
     }
 }

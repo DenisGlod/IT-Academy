@@ -2,8 +2,7 @@ package by.itacademy.project.model;
 
 import java.util.Objects;
 
-public class Rating {
-    private Long id;
+public class Rating extends AbstractModel {
     private Long userId;
     private Long topicId;
     private Byte mark;
@@ -11,19 +10,10 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(Long id, Long userId, Long topicId, Byte mark) {
-        this.id = id;
+    public Rating(Long userId, Long topicId, Byte mark) {
         this.userId = userId;
         this.topicId = topicId;
         this.mark = mark;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getUserId() {
@@ -53,8 +43,7 @@ public class Rating {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Rating{");
-        sb.append("id=").append(id);
-        sb.append(", userId=").append(userId);
+        sb.append("userId=").append(userId);
         sb.append(", topicId=").append(topicId);
         sb.append(", mark=").append(mark);
         sb.append('}');
@@ -66,11 +55,11 @@ public class Rating {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rating rating = (Rating) o;
-        return id.equals(rating.id) && userId.equals(rating.userId) && topicId.equals(rating.topicId) && mark.equals(rating.mark);
+        return Objects.equals(userId, rating.userId) && Objects.equals(topicId, rating.topicId) && Objects.equals(mark, rating.mark);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, topicId, mark);
+        return Objects.hash(userId, topicId, mark);
     }
 }
