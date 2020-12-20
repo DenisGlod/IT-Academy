@@ -1,4 +1,4 @@
-package by.itacademy.repository;
+package by.itacademy.repository.memory;
 
 import by.itacademy.model.User;
 
