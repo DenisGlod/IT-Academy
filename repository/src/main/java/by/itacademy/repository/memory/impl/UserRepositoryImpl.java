@@ -25,21 +25,24 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return List.copyOf(userMap.values());
     }
 
     @Override
     public Optional<User> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(userMap.get(id));
     }
 
     @Override
     public User save(User user) {
-        return null;
+        if (userMap.containsKey(user.getId())) {
+            return userMap.replace(user.getId(), user);
+        }
+        return userMap.put(user.getId(), user);
     }
 
     @Override
     public User remove(User user) {
-        return null;
+        return userMap.remove(user.getId());
     }
 }

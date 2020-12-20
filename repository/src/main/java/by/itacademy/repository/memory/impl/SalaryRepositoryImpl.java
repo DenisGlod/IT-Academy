@@ -25,21 +25,24 @@ public class SalaryRepositoryImpl implements SalaryRepository {
 
     @Override
     public List<Salary> findAll() {
-        return null;
+        return List.copyOf(salaryMap.values());
     }
 
     @Override
     public Optional<Salary> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(salaryMap.get(id));
     }
 
     @Override
     public Salary save(Salary salary) {
-        return null;
+        if (salaryMap.containsKey(salary.getId())) {
+            return salaryMap.replace(salary.getId(), salary);
+        }
+        return salaryMap.put(salary.getId(), salary);
     }
 
     @Override
     public Salary remove(Salary salary) {
-        return null;
+        return salaryMap.remove(salary.getId());
     }
 }

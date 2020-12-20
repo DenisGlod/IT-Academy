@@ -25,21 +25,24 @@ public class RatingRepositoryImpl implements RatingRepository {
 
     @Override
     public List<Rating> findAll() {
-        return null;
+        return List.copyOf(ratingMap.values());
     }
 
     @Override
     public Optional<Rating> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(ratingMap.get(id));
     }
 
     @Override
     public Rating save(Rating rating) {
-        return null;
+        if (ratingMap.containsKey(rating.getId())) {
+            return ratingMap.replace(rating.getId(), rating);
+        }
+        return ratingMap.put(rating.getId(), rating);
     }
 
     @Override
     public Rating remove(Rating rating) {
-        return null;
+        return ratingMap.remove(rating.getId());
     }
 }

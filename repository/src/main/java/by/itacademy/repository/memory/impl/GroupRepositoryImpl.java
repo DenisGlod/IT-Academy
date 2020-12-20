@@ -3,6 +3,7 @@ package by.itacademy.repository.memory.impl;
 import by.itacademy.model.Group;
 import by.itacademy.repository.memory.GroupRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,21 +26,24 @@ public class GroupRepositoryImpl implements GroupRepository {
 
     @Override
     public List<Group> findAll() {
-        return null;
+        return List.copyOf(groupMap.values());
     }
 
     @Override
     public Optional<Group> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(groupMap.get(id));
     }
 
     @Override
     public Group save(Group group) {
-        return null;
+        if (groupMap.containsKey(group.getId())) {
+            return groupMap.replace(group.getId(), group);
+        }
+        return groupMap.put(group.getId(), group);
     }
 
     @Override
     public Group remove(Group group) {
-        return null;
+        return groupMap.remove(group.getId());
     }
 }

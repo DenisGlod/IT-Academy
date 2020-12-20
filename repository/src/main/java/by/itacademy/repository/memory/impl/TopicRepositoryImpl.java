@@ -25,21 +25,24 @@ public class TopicRepositoryImpl implements TopicRepository {
 
     @Override
     public List<Topic> findAll() {
-        return null;
+        return List.copyOf(topicMap.values());
     }
 
     @Override
     public Optional<Topic> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(topicMap.get(id));
     }
 
     @Override
     public Topic save(Topic topic) {
-        return null;
+        if (topicMap.containsKey(topic.getId())) {
+            return topicMap.replace(topic.getId(), topic);
+        }
+        return topicMap.put(topic.getId(), topic);
     }
 
     @Override
     public Topic remove(Topic topic) {
-        return null;
+        return topicMap.remove(topic.getId());
     }
 }
