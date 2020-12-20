@@ -1,4 +1,4 @@
-package by.itacademy.project.model;
+package by.itacademy.model;
 
 public enum Role {
     ADMINISTRATOR,

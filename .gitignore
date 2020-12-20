@@ -3,6 +3,7 @@
 .classpath
 **/*.iml
 
-.idea/
-target/
-.settings/
+/out/
+/.idea/
+**/target/
+/.settings/

@@ -1,4 +1,4 @@
-package by.itacademy.project.model;
+package by.itacademy.model;
 
 import java.util.List;
 import java.util.Objects;
