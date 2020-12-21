@@ -12,7 +12,8 @@ public class User extends AbstractModel {
     public User() {
     }
 
-    public User(String login, String password, String fio, Integer age, Role role) {
+    public User(Long id, String login, String password, String fio, Integer age, Role role) {
+        super(id);
         this.login = login;
         this.password = password;
         this.fio = fio;

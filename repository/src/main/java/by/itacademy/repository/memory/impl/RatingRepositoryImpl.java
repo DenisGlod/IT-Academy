@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RatingRepositoryImpl implements RatingRepository {
-    private Map<Long, Rating> ratingMap;
+    private final Map<Long, Rating> ratingMap;
 
     private RatingRepositoryImpl() {
         ratingMap = new ConcurrentHashMap<>();

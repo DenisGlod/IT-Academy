@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SalaryRepositoryImpl implements SalaryRepository {
-    private Map<Long, Salary> salaryMap;
+    private final Map<Long, Salary> salaryMap;
 
     private SalaryRepositoryImpl() {
         salaryMap = new ConcurrentHashMap<>();

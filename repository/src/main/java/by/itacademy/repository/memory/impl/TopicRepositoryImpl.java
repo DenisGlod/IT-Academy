@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class TopicRepositoryImpl implements TopicRepository {
-    private Map<Long, Topic> topicMap;
+    private final Map<Long, Topic> topicMap;
 
     private TopicRepositoryImpl() {
         topicMap = new ConcurrentHashMap<>();

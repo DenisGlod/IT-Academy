@@ -26,4 +26,32 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>admin</servlet-name>
+        <jsp-file>/admin.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin</servlet-name>
+        <url-pattern>/admin.html</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>user</servlet-name>
+        <jsp-file>/user.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>user</servlet-name>
+        <url-pattern>/user.html</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>teacher</servlet-name>
+        <jsp-file>/teacher.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacher</servlet-name>
+        <url-pattern>/teacher.html</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
 </web-app>

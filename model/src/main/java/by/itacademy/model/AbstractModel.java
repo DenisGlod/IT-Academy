@@ -1,11 +1,13 @@
 package by.itacademy.model;
 
-import java.io.Serializable;
-
 public abstract class AbstractModel {
     private Long id;
 
     public AbstractModel() {
+    }
+
+    public AbstractModel(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

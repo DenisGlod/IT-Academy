@@ -7,7 +7,7 @@
 <body>
 <a href="/">Главная страница</a>
 <h3>Авторизация</h3>
-<form action="login" method="post">
+<form action="login.do" method="post">
     <p>
         <label>Логин: <input name="login" type="text" placeholder="Введите логин"></label><br>
         <label>Пароль: <input name="password" type="password" placeholder="Введите пароль"></label><br>
