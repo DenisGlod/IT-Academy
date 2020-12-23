@@ -11,6 +11,6 @@
     <title>IT-Academy Project - Администратор</title>
 </head>
 <body>
-
+<h1>Администратор</h1>
 </body>
 </html>

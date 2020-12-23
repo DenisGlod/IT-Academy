@@ -11,6 +11,6 @@
     <title>IT-Academy Project - Пользователь</title>
 </head>
 <body>
-
+<h1>Пользователь</h1>
 </body>
 </html>

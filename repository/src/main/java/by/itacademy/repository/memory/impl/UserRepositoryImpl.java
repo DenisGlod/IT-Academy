@@ -47,7 +47,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<User> findByLoginPass(String login, String pass) {
         for (User userItem : userMap.values()) {
-            if (login.equals(userItem.getLogin())) {
+            if (login.equals(userItem.getLogin()) && pass.equals(userItem.getPassword())) {
                 return Optional.of(userItem);
             }
         }

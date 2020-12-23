@@ -11,6 +11,6 @@
     <title>IT-Academy Project - Учитель</title>
 </head>
 <body>
-
+<h1>Учитель</h1>
 </body>
 </html>

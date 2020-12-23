@@ -28,6 +28,10 @@
         </dependency>
         <dependency>
             <groupId>by.it-academy</groupId>
+            <artifactId>filter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>by.it-academy</groupId>
             <artifactId>model</artifactId>
         </dependency>
         <dependency>
@@ -37,6 +41,10 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
         </dependency>
     </dependencies>
 

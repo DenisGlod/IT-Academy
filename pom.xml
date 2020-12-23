@@ -25,6 +25,7 @@
         <servlet.version>4.0.1</servlet.version>
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
+        <jstl.version>1.2</jstl.version>
     </properties>
 
     <dependencyManagement>
@@ -70,6 +71,11 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${jstl.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
