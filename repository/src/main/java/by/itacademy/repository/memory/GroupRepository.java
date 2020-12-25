@@ -13,4 +13,6 @@ public interface GroupRepository {
     Group save(Group group);
 
     Group remove(Group group);
+
+    List<Group> findGroupByUserId(Long userId);
 }

@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SalaryRepositoryImpl implements SalaryRepository {
-    private final Map<Long, Salary> salaryMap;
+    private final Map<Long, Salary> SALARY_MAP;
 
     private SalaryRepositoryImpl() {
-        salaryMap = new ConcurrentHashMap<>();
+        SALARY_MAP = new ConcurrentHashMap<>();
     }
 
     private static class SalaryRepositoryHelper {
@@ -25,24 +25,24 @@ public class SalaryRepositoryImpl implements SalaryRepository {
 
     @Override
     public List<Salary> findAll() {
-        return List.copyOf(salaryMap.values());
+        return List.copyOf(SALARY_MAP.values());
     }
 
     @Override
     public Optional<Salary> findById(Long id) {
-        return Optional.ofNullable(salaryMap.get(id));
+        return Optional.ofNullable(SALARY_MAP.get(id));
     }
 
     @Override
     public Salary save(Salary salary) {
-        if (salaryMap.containsKey(salary.getId())) {
-            return salaryMap.replace(salary.getId(), salary);
+        if (SALARY_MAP.containsKey(salary.getId())) {
+            return SALARY_MAP.replace(salary.getId(), salary);
         }
-        return salaryMap.put(salary.getId(), salary);
+        return SALARY_MAP.put(salary.getId(), salary);
     }
 
     @Override
     public Salary remove(Salary salary) {
-        return salaryMap.remove(salary.getId());
+        return SALARY_MAP.remove(salary.getId());
     }
 }

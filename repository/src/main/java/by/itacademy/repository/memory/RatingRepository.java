@@ -13,4 +13,6 @@ public interface RatingRepository {
     Rating save(Rating rating);
 
     Rating remove(Rating rating);
+
+    Rating findByTopicId(Long id);
 }

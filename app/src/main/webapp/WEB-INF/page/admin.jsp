@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: denis
-  Date: 20.12.2020
-  Time: 17:32
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>IT-Academy Project - Администратор</title>
 </head>
 <body>
 <h1>Администратор</h1>
+<form action="/logout.do" method="post">
+    <input type="submit" name="logout" value="Выйти">
+</form>
 </body>
 </html>

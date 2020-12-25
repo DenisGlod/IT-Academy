@@ -5,12 +5,13 @@ import java.util.Objects;
 public class Rating extends AbstractModel {
     private Long userId;
     private Long topicId;
-    private Byte mark;
+    private Integer mark;
 
     public Rating() {
     }
 
-    public Rating(Long userId, Long topicId, Byte mark) {
+    public Rating(Long id, Long userId, Long topicId, Integer mark) {
+        super(id);
         this.userId = userId;
         this.topicId = topicId;
         this.mark = mark;
@@ -32,11 +33,11 @@ public class Rating extends AbstractModel {
         this.topicId = topicId;
     }
 
-    public Byte getMark() {
+    public Integer getMark() {
         return mark;
     }
 
-    public void setMark(Byte mark) {
+    public void setMark(Integer mark) {
         this.mark = mark;
     }
 

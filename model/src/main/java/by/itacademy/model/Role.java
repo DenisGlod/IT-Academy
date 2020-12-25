@@ -1,7 +1,7 @@
 package by.itacademy.model;
 
 public enum Role {
-    ADMINISTRATOR,
+    ADMIN,
     TEACHER,
     STUDENT
 }

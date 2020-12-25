@@ -8,7 +8,8 @@ public class Topic extends AbstractModel {
     public Topic() {
     }
 
-    public Topic(String name) {
+    public Topic(Long id, String name) {
+        super(id);
         this.name = name;
     }
 

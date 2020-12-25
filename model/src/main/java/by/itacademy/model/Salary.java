@@ -11,7 +11,8 @@ public class Salary extends AbstractModel {
     public Salary() {
     }
 
-    public Salary(Long teacherId, Date date, Integer value) {
+    public Salary(Long id, Long teacherId, Date date, Integer value) {
+        super(id);
         this.teacherId = teacherId;
         this.date = date;
         this.value = value;

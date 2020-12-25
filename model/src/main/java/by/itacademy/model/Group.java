@@ -11,7 +11,8 @@ public class Group extends AbstractModel {
     public Group() {
     }
 
-    public Group(List<Long> users, List<Long> topics, Long teacherId) {
+    public Group(Long id, List<Long> users, List<Long> topics, Long teacherId) {
+        super(id);
         this.users = users;
         this.topics = topics;
         this.teacherId = teacherId;
