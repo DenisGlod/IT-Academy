@@ -27,7 +27,6 @@ public class AuthorizationFilter extends HttpFilter {
             String requestURI = req.getRequestURI();
             LOGGER.info(requestURI);
             var user = (User) session.getAttribute(Attributes.USER.getName());
-            LOGGER.info(user.toString());
             if (requestURI.equals(Pages.USER.getName()) && user.getRole() == Role.STUDENT ||
                     requestURI.equals(Pages.TEACHER.getName()) && user.getRole() == Role.TEACHER ||
                     requestURI.equals(Pages.ADMIN.getName()) && user.getRole() == Role.ADMIN) {

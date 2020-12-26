@@ -32,7 +32,6 @@ public class LoginController extends HttpServlet {
             resp.sendError(401, "Для доступа к запрашиваемому ресурсу требуется аутентификация!");
             LOGGER.info("Authorization 401 Unauthorized");
         }
-        LOGGER.info(user.toString());
         switch (user.getRole()) {
             case STUDENT:
                 LOGGER.info("Go STUDENT Pages");

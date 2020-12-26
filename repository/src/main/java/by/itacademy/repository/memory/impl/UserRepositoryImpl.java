@@ -25,7 +25,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     private List<User> initUserRepository() {
         return List.of(
-                new User(1L, "administrator", "administrator", "FIO", 30, Role.ADMIN),
+                new User(1L, "administrator", "administrator", "Иванов Иван Иванович", 30, Role.ADMIN),
                 new User(2L, "teacher1", "teacher1", "FIO", 54, Role.TEACHER),
                 new User(3L, "teacher2", "teacher2", "FIO", 51, Role.TEACHER),
                 new User(4L, "user1", "user1", "Петров Иван Иванович", 22, Role.STUDENT),

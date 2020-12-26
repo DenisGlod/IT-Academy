@@ -9,5 +9,12 @@
 <form action="/logout.do" method="post">
     <input type="submit" name="logout" value="Выйти">
 </form>
+<div>
+    <p><c:out value="${user.fio}"/></p>
+    <hr>
+</div>
+<a href="/adduser">Добавить пользователя</a> |
+<a href="/userlist">Список пользователей</a>
+
 </body>
 </html>
