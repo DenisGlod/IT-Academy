@@ -21,15 +21,13 @@ public class AuthenticationFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        LOGGER.info("Authentication Filter");
         var login = req.getParameter("login");
         var password = req.getParameter("password");
-        LOGGER.info("login {}", login);
-        LOGGER.info("password {}", password);
         boolean flag = true;
         if (Objects.nonNull(login) && Objects.nonNull(password) && !login.isEmpty() && !password.isEmpty()) {
             var byLoginPass = RepositoryFactory.getFactory().getUserRepository().findByLoginPass(login, password);
             if (byLoginPass.isPresent()) {
+                LOGGER.info("Authentication success.");
                 flag = false;
                 var session = req.getSession();
                 session.setAttribute(Attributes.USER.getName(), byLoginPass.get());
@@ -37,6 +35,7 @@ public class AuthenticationFilter extends HttpFilter {
             }
         }
         if (flag) {
+            LOGGER.info("Authentication failed!");
             req.setAttribute(Attributes.EXCEPTION_FLAG.getName(), true);
             req.setAttribute(Attributes.EXCEPTION_MESSAGE.getName(), "Неверный логин или пароль, либо такого пользователя не существует!");
             req.getRequestDispatcher(Pages.INDEX.getName()).forward(req, res);

@@ -3,7 +3,6 @@ package by.itacademy.app;
 import by.itacademy.app.bean.GroupBean;
 import by.itacademy.filter.util.Attributes;
 import by.itacademy.filter.util.Pages;
-import by.itacademy.model.Rating;
 import by.itacademy.model.Topic;
 import by.itacademy.model.User;
 import by.itacademy.repository.factory.RepositoryFactory;
@@ -25,11 +24,11 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOGGER.info("LoginController doPost");
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute(Attributes.USER.getName());
         if (Objects.isNull(user)) {
-            resp.sendError(401);
+            resp.sendError(401, "Для доступа к запрашиваемому ресурсу требуется аутентификация!");
+            LOGGER.info("Authorization 401 Unauthorized");
         }
         LOGGER.info(user.toString());
         switch (user.getRole()) {
@@ -46,7 +45,7 @@ public class LoginController extends HttpServlet {
                         Optional<Topic> item = topicRepository.findById(topicId);
                         if (item.isPresent()) {
                             var topic = item.get();
-                            var rating = ratingRepository.findByTopicId(topicId);
+                            var rating = ratingRepository.findByUserIdAndTopicId(user.getId(), topicId);
                             ratingMap.put(topic.getName(), rating.getMark());
                         }
                     });
@@ -65,6 +64,5 @@ public class LoginController extends HttpServlet {
                 resp.sendRedirect(Pages.ADMIN.getName());
                 break;
         }
-        LOGGER.info("LoginController doPost End");
     }
 }

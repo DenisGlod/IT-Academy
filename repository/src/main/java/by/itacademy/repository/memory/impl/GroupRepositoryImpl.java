@@ -14,9 +14,7 @@ public class GroupRepositoryImpl implements GroupRepository {
 
     private GroupRepositoryImpl() {
         GROUP_MAP = new ConcurrentHashMap<>();
-        initGroupRepository().forEach(item -> {
-            GROUP_MAP.put(item.getId(), item);
-        });
+        initGroupRepository().forEach(item -> GROUP_MAP.put(item.getId(), item));
     }
 
     private static class GroupRepositoryHelper {

@@ -59,9 +59,9 @@ public class RatingRepositoryImpl implements RatingRepository {
     }
 
     @Override
-    public Rating findByTopicId(Long id) {
+    public Rating findByUserIdAndTopicId(Long userId, Long topicId) {
         for (Rating item : RATING_MAP.values()) {
-            if (item.getTopicId() == id) {
+            if (item.getTopicId() == topicId && item.getUserId() == userId) {
                 return item;
             }
         }

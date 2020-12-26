@@ -22,7 +22,6 @@ public class AuthorizationFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        LOGGER.info("Authorization Filter");
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute(Attributes.USER.getName()) != null) {
             String requestURI = req.getRequestURI();
@@ -35,11 +34,11 @@ public class AuthorizationFilter extends HttpFilter {
                 chain.doFilter(req, res);
             } else {
                 res.sendError(403, "Недостаточно прав для доступа к этой странице!");
-                LOGGER.info("403 Forbidden");
+                LOGGER.info("Authorization 403 Forbidden");
             }
         } else {
             res.sendError(401, "Для доступа к запрашиваемому ресурсу требуется аутентификация!");
-            LOGGER.info("401 Unauthorized");
+            LOGGER.info("Authorization 401 Unauthorized");
         }
     }
 }

@@ -14,5 +14,5 @@ public interface RatingRepository {
 
     Rating remove(Rating rating);
 
-    Rating findByTopicId(Long id);
+    Rating findByUserIdAndTopicId(Long userId, Long topicId);
 }
