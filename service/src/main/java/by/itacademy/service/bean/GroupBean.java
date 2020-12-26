@@ -1,4 +1,4 @@
-package by.itacademy.app.bean;
+package by.itacademy.service.bean;
 
 import java.util.Map;
 

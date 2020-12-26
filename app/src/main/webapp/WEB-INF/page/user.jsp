@@ -12,7 +12,7 @@
 <div>
     <p><c:out value="${user.fio}"/></p>
 </div>
-<table border="1" >
+<table border="1">
     <thead>
     <tr>
         <td>№ группы</td>
