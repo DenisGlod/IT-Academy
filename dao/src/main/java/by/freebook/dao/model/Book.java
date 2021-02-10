@@ -22,8 +22,8 @@ public class Book extends Entity {
     private Integer publishingYear;
 
     public Book withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 
 }

@@ -1,9 +1,9 @@
 package by.freebook.service;
 
+import by.freebook.service.bean.UserDataBean;
+
 import java.util.List;
 import java.util.Optional;
-
-import by.freebook.service.bean.UserDataBean;
 
 public interface UserDataService {
     List<UserDataBean> getAllUserData();

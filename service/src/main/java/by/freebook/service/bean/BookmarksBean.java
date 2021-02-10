@@ -16,7 +16,7 @@ public class BookmarksBean extends Bean {
     private UserBean user;
 
     public BookmarksBean withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 }

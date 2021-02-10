@@ -22,8 +22,8 @@ public class BookBean extends Bean {
     private Integer publishingYear;
 
     public BookBean withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 
 }

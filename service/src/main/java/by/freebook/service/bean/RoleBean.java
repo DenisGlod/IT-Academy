@@ -15,8 +15,8 @@ public class RoleBean extends Bean {
     private String role;
 
     public RoleBean withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 
 }

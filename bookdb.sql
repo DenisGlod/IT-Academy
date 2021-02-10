@@ -7,16 +7,25 @@
 
 -- Started on 2021-02-10 18:16:20
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
+SET
+statement_timeout = 0;
+SET
+lock_timeout = 0;
+SET
+idle_in_transaction_session_timeout = 0;
+SET
+client_encoding = 'UTF8';
+SET
+standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+SET
+check_function_bodies = false;
+SET
+xmloption = content;
+SET
+client_min_messages = warning;
+SET
+row_security = off;
 
 --
 -- TOC entry 3 (class 2615 OID 2200)
@@ -32,28 +41,32 @@ CREATE SCHEMA public;
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON SCHEMA public IS 'standard public schema';
+COMMENT
+ON SCHEMA public IS 'standard public schema';
 
 
-SET default_tablespace = '';
+SET
+default_tablespace = '';
 
-SET default_table_access_method = heap;
+SET
+default_table_access_method = heap;
 
 --
 -- TOC entry 205 (class 1259 OID 16436)
 -- Name: book; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.book (
-    id integer NOT NULL,
-    name character varying NOT NULL,
-    author character varying NOT NULL,
-    publisher character varying NOT NULL,
-    binding character varying NOT NULL,
+CREATE TABLE public.book
+(
+    id               integer           NOT NULL,
+    name             character varying NOT NULL,
+    author           character varying NOT NULL,
+    publisher        character varying NOT NULL,
+    binding          character varying NOT NULL,
     age_restrictions character varying NOT NULL,
-    isbn character varying NOT NULL,
-    description character varying,
-    publishing_year smallint NOT NULL
+    isbn             character varying NOT NULL,
+    description      character varying,
+    publishing_year  smallint          NOT NULL
 );
 
 
@@ -67,8 +80,7 @@ CREATE SEQUENCE public.book_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE CACHE 1;
 
 
 --
@@ -85,8 +97,9 @@ ALTER SEQUENCE public.book_id_seq OWNED BY public.book.id;
 -- Name: bookmarks; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.bookmarks (
-    id integer NOT NULL,
+CREATE TABLE public.bookmarks
+(
+    id      integer NOT NULL,
     user_id integer NOT NULL,
     book_id integer NOT NULL
 );
@@ -102,8 +115,7 @@ CREATE SEQUENCE public.bookmarks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE CACHE 1;
 
 
 --
@@ -120,8 +132,9 @@ ALTER SEQUENCE public.bookmarks_id_seq OWNED BY public.bookmarks.id;
 -- Name: role; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.role (
-    id integer NOT NULL,
+CREATE TABLE public.role
+(
+    id   integer           NOT NULL,
     name character varying NOT NULL
 );
 
@@ -136,8 +149,7 @@ CREATE SEQUENCE public.role_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE CACHE 1;
 
 
 --
@@ -154,11 +166,12 @@ ALTER SEQUENCE public.role_id_seq OWNED BY public.role.id;
 -- Name: user; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public."user" (
-    id integer NOT NULL,
-    email character varying(30) NOT NULL,
-    password character varying(20) NOT NULL,
-    role_id integer NOT NULL,
+CREATE TABLE public."user"
+(
+    id           integer               NOT NULL,
+    email        character varying(30) NOT NULL,
+    password     character varying(20) NOT NULL,
+    role_id      integer               NOT NULL,
     user_data_id integer
 );
 
@@ -168,12 +181,13 @@ CREATE TABLE public."user" (
 -- Name: user_data; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.user_data (
-    id integer NOT NULL,
-    first_name character varying(30) NOT NULL,
-    last_name character varying(30) NOT NULL,
+CREATE TABLE public.user_data
+(
+    id          integer               NOT NULL,
+    first_name  character varying(30) NOT NULL,
+    last_name   character varying(30) NOT NULL,
     middle_name character varying(30),
-    age date
+    age         date
 );
 
 
@@ -187,8 +201,7 @@ CREATE SEQUENCE public.user_data_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE CACHE 1;
 
 
 --
@@ -210,8 +223,7 @@ CREATE SEQUENCE public.user_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+    NO MAXVALUE CACHE 1;
 
 
 --
@@ -269,16 +281,28 @@ ALTER TABLE ONLY public.user_data ALTER COLUMN id SET DEFAULT nextval('public.us
 -- Data for Name: book; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.book VALUES (1, '1984', 'Джордж Оруэлл', 'АСТ', 'Твердый переплет', '16+', '978-5-17-103595-2', 'Своеобразный антипод второй великой антиутопии XX века - "О дивный новый мир" Олдоса Хаксли. Что, в сущности, страшнее: доведенное до абсурда "общество потребления" - или доведенное до абсолюта "общество идеи"?
-
+INSERT INTO public.book
+VALUES (1, '1984', 'Джордж Оруэлл', 'АСТ', 'Твердый переплет', '16+', '978-5-17-103595-2', 'Своеобразный антипод второй великой антиутопии XX века - "О дивный новый мир" Олдоса Хаксли. Что, в сущности, страшнее: доведенное до абсурда "общество потребления" - или доведенное до абсолюта "общество идеи"?
+
+
+
 По Оруэллу, нет и не может быть ничего ужаснее тотальной несвободы...', 2019);
-INSERT INTO public.book VALUES (2, 'Краткие ответы на большие вопросы', 'Стивен Хокинг', 'Эксмо', 'Твердый переплет', '16+', '978-5-04-099443-4', 'Стивен Хокинг, величайший ученый современности, изменил наш мир. Его уход - огромная потеря для человечества. В своей финальной книге, над которой Стивен Хокинг работал практически до самого конца, великий физик делится с нами своим отношением к жизни, цивилизации, времени, Богу, к глобальным вещам, волнующим каждого из нас.
-
-Перед вами книга-сенсация, книга-завещание, последний труд всемирно известного физика Стивена Хокинга, в которой он подводит некий итог и высказывается по самым главным вопросам, волнующим всех.
-
-Выживет ли человечество? Должны ли мы так активно внедряться в космос? Есть ли Бог? Это лишь некоторые из вопросов, на которые отвечает Стивен Хокинг, один из величайших умов в истории, в своей финальной книге.
-
-В книгу включены воспоминания оскароносца Эдди Редмэйна, игравшего Стивена Хокинга, Нобелевского лауреата Кипа Торна и дочери Хокинга, Люси.', 2019);
+INSERT INTO public.book
+VALUES (2, 'Краткие ответы на большие вопросы', 'Стивен Хокинг', 'Эксмо', 'Твердый переплет', '16+',
+        '978-5-04-099443-4', 'Стивен Хокинг, величайший ученый современности, изменил наш мир. Его уход - огромная потеря для человечества. В своей финальной книге, над которой Стивен Хокинг работал практически до самого конца, великий физик делится с нами своим отношением к жизни, цивилизации, времени, Богу, к глобальным вещам, волнующим каждого из нас.
+
+
+
+Перед вами книга-сенсация, книга-завещание, последний труд всемирно известного физика Стивена Хокинга, в которой он подводит некий итог и высказывается по самым главным вопросам, волнующим всех.
+
+
+
+Выживет ли человечество? Должны ли мы так активно внедряться в космос? Есть ли Бог? Это лишь некоторые из вопросов, на которые отвечает Стивен Хокинг, один из величайших умов в истории, в своей финальной книге.
+
+
+
+В книгу включены воспоминания оскароносца Эдди Редмэйна, игравшего Стивена Хокинга, Нобелевского лауреата Кипа Торна и дочери Хокинга, Люси.',
+        2019);
 
 
 --
@@ -288,16 +312,18 @@ INSERT INTO public.book VALUES (2, 'Краткие ответы на больш�
 --
 
 
-
 --
 -- TOC entry 3042 (class 0 OID 16498)
 -- Dependencies: 209
 -- Data for Name: role; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.role VALUES (1, 'Администратор');
-INSERT INTO public.role VALUES (2, 'Модератор');
-INSERT INTO public.role VALUES (3, 'Пользователь');
+INSERT INTO public.role
+VALUES (1, 'Администратор');
+INSERT INTO public.role
+VALUES (2, 'Модератор');
+INSERT INTO public.role
+VALUES (3, 'Пользователь');
 
 
 --
@@ -306,12 +332,18 @@ INSERT INTO public.role VALUES (3, 'Пользователь');
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public."user" VALUES (4, 'moderator1@freebook.test', 'moderator1', 2, NULL);
-INSERT INTO public."user" VALUES (5, 'moderator2@freebook.test', 'moderator2', 2, NULL);
-INSERT INTO public."user" VALUES (6, 'user3@freebook.test', 'user3', 3, NULL);
-INSERT INTO public."user" VALUES (1, 'admin@freebook.test', 'admin', 1, 1);
-INSERT INTO public."user" VALUES (3, 'user2@freebook.test', 'user2', 3, 2);
-INSERT INTO public."user" VALUES (2, 'user1@freebook.test', 'user1', 3, 3);
+INSERT INTO public."user"
+VALUES (4, 'moderator1@freebook.test', 'moderator1', 2, NULL);
+INSERT INTO public."user"
+VALUES (5, 'moderator2@freebook.test', 'moderator2', 2, NULL);
+INSERT INTO public."user"
+VALUES (6, 'user3@freebook.test', 'user3', 3, NULL);
+INSERT INTO public."user"
+VALUES (1, 'admin@freebook.test', 'admin', 1, 1);
+INSERT INTO public."user"
+VALUES (3, 'user2@freebook.test', 'user2', 3, 2);
+INSERT INTO public."user"
+VALUES (2, 'user1@freebook.test', 'user1', 3, 3);
 
 
 --
@@ -320,9 +352,12 @@ INSERT INTO public."user" VALUES (2, 'user1@freebook.test', 'user1', 3, 3);
 -- Data for Name: user_data; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.user_data VALUES (1, 'Виктор', 'Петров', 'Валентинович', '1999-01-03');
-INSERT INTO public.user_data VALUES (2, 'Николай', 'Кузнецов', 'Николаевич', '1998-03-09');
-INSERT INTO public.user_data VALUES (3, 'Андрей', 'Шеремет', 'Витальевич', '2021-02-06');
+INSERT INTO public.user_data
+VALUES (1, 'Виктор', 'Петров', 'Валентинович', '1999-01-03');
+INSERT INTO public.user_data
+VALUES (2, 'Николай', 'Кузнецов', 'Николаевич', '1998-03-09');
+INSERT INTO public.user_data
+VALUES (3, 'Андрей', 'Шеремет', 'Витальевич', '2021-02-06');
 
 
 --
@@ -439,7 +474,9 @@ ALTER TABLE ONLY public."user"
 --
 
 ALTER TABLE ONLY public.bookmarks
-    ADD CONSTRAINT bookmarks_fk FOREIGN KEY (book_id) REFERENCES public.book(id) ON DELETE CASCADE;
+    ADD CONSTRAINT bookmarks_fk FOREIGN KEY (book_id) REFERENCES public.book(id) ON
+DELETE
+CASCADE;
 
 
 --
@@ -448,7 +485,9 @@ ALTER TABLE ONLY public.bookmarks
 --
 
 ALTER TABLE ONLY public.bookmarks
-    ADD CONSTRAINT bookmarks_fk_1 FOREIGN KEY (user_id) REFERENCES public."user"(id) ON DELETE CASCADE;
+    ADD CONSTRAINT bookmarks_fk_1 FOREIGN KEY (user_id) REFERENCES public."user"(id) ON
+DELETE
+CASCADE;
 
 
 --
@@ -466,7 +505,9 @@ ALTER TABLE ONLY public."user"
 --
 
 ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_fk_1 FOREIGN KEY (user_data_id) REFERENCES public.user_data(id) ON DELETE CASCADE;
+    ADD CONSTRAINT user_fk_1 FOREIGN KEY (user_data_id) REFERENCES public.user_data(id) ON
+DELETE
+CASCADE;
 
 
 --
@@ -477,7 +518,11 @@ ALTER TABLE ONLY public."user"
 
 REVOKE ALL ON SCHEMA public FROM postgres;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
-GRANT USAGE ON SCHEMA public TO "user";
+GRANT
+USAGE
+ON
+SCHEMA
+public TO "user";
 
 
 --
@@ -486,7 +531,8 @@ GRANT USAGE ON SCHEMA public TO "user";
 -- Name: TABLE book; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON TABLE public.book TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON TABLE public.book TO "user" WITH GRANT OPTION;
 
 
 --
@@ -495,7 +541,8 @@ GRANT ALL ON TABLE public.book TO "user" WITH GRANT OPTION;
 -- Name: SEQUENCE book_id_seq; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON SEQUENCE public.book_id_seq TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON SEQUENCE public.book_id_seq TO "user" WITH GRANT OPTION;
 
 
 --
@@ -504,7 +551,8 @@ GRANT ALL ON SEQUENCE public.book_id_seq TO "user" WITH GRANT OPTION;
 -- Name: TABLE bookmarks; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON TABLE public.bookmarks TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON TABLE public.bookmarks TO "user" WITH GRANT OPTION;
 
 
 --
@@ -513,7 +561,8 @@ GRANT ALL ON TABLE public.bookmarks TO "user" WITH GRANT OPTION;
 -- Name: SEQUENCE bookmarks_id_seq; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON SEQUENCE public.bookmarks_id_seq TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON SEQUENCE public.bookmarks_id_seq TO "user" WITH GRANT OPTION;
 
 
 --
@@ -522,7 +571,8 @@ GRANT ALL ON SEQUENCE public.bookmarks_id_seq TO "user" WITH GRANT OPTION;
 -- Name: TABLE role; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON TABLE public.role TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON TABLE public.role TO "user" WITH GRANT OPTION;
 
 
 --
@@ -531,7 +581,8 @@ GRANT ALL ON TABLE public.role TO "user" WITH GRANT OPTION;
 -- Name: SEQUENCE role_id_seq; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON SEQUENCE public.role_id_seq TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON SEQUENCE public.role_id_seq TO "user" WITH GRANT OPTION;
 
 
 --
@@ -541,7 +592,9 @@ GRANT ALL ON SEQUENCE public.role_id_seq TO "user" WITH GRANT OPTION;
 --
 
 REVOKE ALL ON TABLE public."user" FROM postgres;
-GRANT ALL ON TABLE public."user" TO "user" WITH GRANT OPTION;
+GRANT
+ALL
+ON TABLE public."user" TO "user" WITH GRANT OPTION;
 
 
 --
@@ -550,7 +603,8 @@ GRANT ALL ON TABLE public."user" TO "user" WITH GRANT OPTION;
 -- Name: TABLE user_data; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON TABLE public.user_data TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON TABLE public.user_data TO "user" WITH GRANT OPTION;
 
 
 --
@@ -559,7 +613,8 @@ GRANT ALL ON TABLE public.user_data TO "user" WITH GRANT OPTION;
 -- Name: SEQUENCE user_data_id_seq; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON SEQUENCE public.user_data_id_seq TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON SEQUENCE public.user_data_id_seq TO "user" WITH GRANT OPTION;
 
 
 --
@@ -568,7 +623,8 @@ GRANT ALL ON SEQUENCE public.user_data_id_seq TO "user" WITH GRANT OPTION;
 -- Name: SEQUENCE user_id_seq; Type: ACL; Schema: public; Owner: -
 --
 
-GRANT ALL ON SEQUENCE public.user_id_seq TO "user" WITH GRANT OPTION;
+GRANT ALL
+ON SEQUENCE public.user_id_seq TO "user" WITH GRANT OPTION;
 
 
 -- Completed on 2021-02-10 18:16:20

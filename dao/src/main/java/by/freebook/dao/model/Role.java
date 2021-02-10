@@ -15,8 +15,8 @@ public class Role extends Entity {
     private String role;
 
     public Role withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 
 }

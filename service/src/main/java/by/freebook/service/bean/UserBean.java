@@ -18,8 +18,8 @@ public class UserBean extends Bean {
     private UserDataBean userData;
 
     public UserBean withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 
 }

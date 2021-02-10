@@ -16,7 +16,7 @@ public class Bookmarks extends Entity {
     private User user;
 
     public Bookmarks withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 }

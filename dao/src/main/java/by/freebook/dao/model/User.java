@@ -18,8 +18,8 @@ public class User extends Entity {
     private UserData userData;
 
     public User withId(Integer id) {
-	setId(id);
-	return this;
+        setId(id);
+        return this;
     }
 
 }
