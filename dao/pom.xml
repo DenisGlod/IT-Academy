@@ -10,18 +10,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>service</artifactId>
+	<artifactId>dao</artifactId>
 	<version>${parent.version}</version>
 
 	<dependencies>
-		<dependency>
-			<groupId>by.freebook</groupId>
-			<artifactId>dao</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
