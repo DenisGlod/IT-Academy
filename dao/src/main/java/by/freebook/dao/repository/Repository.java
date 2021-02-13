@@ -10,5 +10,7 @@ public interface Repository<T> {
 
     Optional<T> save(T entity);
 
+    Optional<T> update(T entity);
+
     Optional<T> remove(Integer id);
 }

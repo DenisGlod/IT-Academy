@@ -29,6 +29,9 @@
         <postgresql.version>42.2.18</postgresql.version>
         <dao.version>0.0.1-SNAPSHOT</dao.version>
         <service.version>0.0.1-SNAPSHOT</service.version>
+        <hibernate-core.version>${hibernate-c3p0.version}</hibernate-core.version>
+        <jstl.version>1.2</jstl.version>
+        <hibernate-c3p0.version>5.4.28.Final</hibernate-c3p0.version>
     </properties>
 
     <dependencyManagement>
@@ -78,12 +81,22 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
-                <version>1.2</version>
+                <version>${jstl.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-c3p0</artifactId>
+                <version>${hibernate-c3p0.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

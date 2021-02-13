@@ -1,6 +1,6 @@
 package by.freebook.service.impl;
 
-import by.freebook.dao.model.Book;
+import by.freebook.dao.entity.Book;
 import by.freebook.dao.repository.impl.BookRepositoryImpl;
 import by.freebook.service.BookService;
 import by.freebook.service.bean.BookBean;

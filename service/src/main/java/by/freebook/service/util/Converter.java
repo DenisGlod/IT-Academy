@@ -1,9 +1,9 @@
 package by.freebook.service.util;
 
-import by.freebook.dao.model.Book;
-import by.freebook.dao.model.Role;
-import by.freebook.dao.model.User;
-import by.freebook.dao.model.UserData;
+import by.freebook.dao.entity.Book;
+import by.freebook.dao.entity.Role;
+import by.freebook.dao.entity.User;
+import by.freebook.dao.entity.UserData;
 import by.freebook.service.bean.BookBean;
 import by.freebook.service.bean.RoleBean;
 import by.freebook.service.bean.UserBean;
