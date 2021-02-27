@@ -15,7 +15,6 @@ import java.io.IOException;
 @Slf4j
 @WebFilter("/page/*")
 public class AuthorizationFilter extends HttpUTF8Filter {
-    private static final long serialVersionUID = -7833436335534794031L;
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)

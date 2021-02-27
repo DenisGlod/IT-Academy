@@ -18,22 +18,21 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     @Override
-    public Optional<UserDataBean> findById(Integer id) {
+    public Optional<UserDataBean> findById(Long id) {
         Optional<UserData> find = UserDataRepositoryImpl.getInstance().find(id);
-        if (find.isPresent()) {
-            return Optional.of(Converter.userDataEntityToUserDataBean(find.get()));
-        }
-        return Optional.empty();
+        return find.map(Converter::userDataEntityToUserDataBean);
     }
 
     @Override
     public Optional<UserDataBean> save(UserDataBean bean) {
         UserData entity = Converter.userDataBeanToUserDataEntity(bean);
-        Optional<UserData> save = UserDataRepositoryImpl.getInstance().save(entity);
-        if (save.isPresent()) {
-            return Optional.of(Converter.userDataEntityToUserDataBean(save.get()));
+        Optional<UserData> save;
+        if (entity.getId() == null) {
+            save = UserDataRepositoryImpl.getInstance().save(entity);
+        } else {
+            save = UserDataRepositoryImpl.getInstance().update(entity);
         }
-        return Optional.empty();
+        return save.map(Converter::userDataEntityToUserDataBean);
     }
 
     @Override

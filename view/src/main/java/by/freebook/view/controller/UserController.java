@@ -20,7 +20,6 @@ import java.util.Optional;
 @Slf4j
 @WebServlet("/page/user.do")
 public class UserController extends HttpServlet {
-    private static final long serialVersionUID = -8117144833322040755L;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,25 +48,27 @@ public class UserController extends HttpServlet {
                 String age = req.getParameter(Constant.AGE);
                 String email = req.getParameter(Constant.EMAIL);
                 String password = req.getParameter(Constant.PASSWORD);
-                UserDataBean userDataBean = new UserDataBean()
-                        .withId(userBeanAuthentication.getUserData().getId())
-                        .withAge(new SimpleDateFormat("yyyy-MM-dd").parse(age))
-                        .withFirstName(firstName)
-                        .withLastName(lastName)
-                        .withMiddleName(middleName);
+                UserDataBean userDataBean = UserDataBean.builder()
+                        .id(userBeanAuthentication.getUserData().getId())
+                        .age(new SimpleDateFormat("yyyy-MM-dd").parse(age))
+                        .firstName(firstName)
+                        .lastName(lastName)
+                        .middleName(middleName)
+                        .build();
                 Optional<UserDataBean> saveUserDataBean = ServiceFactory.getFactory().getUserDataService().save(userDataBean);
                 if (saveUserDataBean.isPresent()) {
                     log.info("UserData saved successfully.");
                 }
-                UserBean userBean = new UserBean()
-                        .withEmail(email)
-                        .withPassword(password)
-                        .withRole(userBeanAuthentication.getRole())
-                        .withUserData(userBeanAuthentication.getUserData())
-                        .withId(userBeanAuthentication.getId());
+                UserBean userBean = UserBean.builder()
+                        .id(userBeanAuthentication.getId())
+                        .email(email)
+                        .password(password)
+                        .role(userBeanAuthentication.getRole())
+                        .userData(userBeanAuthentication.getUserData())
+                        .build();
                 Optional<UserBean> save = ServiceFactory.getFactory().getUserService().save(userBean);
                 if (save.isPresent()) {
-                    save.get().setUserData(saveUserDataBean.get());
+                    save.get().setUserData(saveUserDataBean.orElse(null));
                     session.setAttribute(Constant.AUTHENTICATION, save.get());
                     resp.sendRedirect(req.getContextPath().concat(Constant.PAGE_USER.concat("/account")));
                     log.info("User saved successfully.");

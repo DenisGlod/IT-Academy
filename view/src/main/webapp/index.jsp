@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <c:import url="/WEB-INF/part/head.jsp"></c:import>
+    <c:import url="/WEB-INF/part/head.jsp"/>
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
@@ -19,9 +19,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </c:if>
-        <label for="inputEmail" class="visually-hidden">Email address</label>
+        <label for="email" class="visually-hidden">Email address</label>
         <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="visually-hidden">Password</label>
+        <label for="password" class="visually-hidden">Password</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
             <label>

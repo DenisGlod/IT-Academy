@@ -32,16 +32,16 @@
                 <form class="needs-validation" action="/freebook/page/user.do" method="post">
                     <div class="row g-3">
                         <div class="col-sm-3">
-                            <label for="firstName" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
-                                   value="${sessionScope.authentication.userData.firstName}" required>
-                            <div class="invalid-feedback">Valid first name is required.</div>
-                        </div>
-                        <div class="col-sm-3">
                             <label for="lastName" class="form-label">Last name</label>
                             <input type="text" class="form-control" id="lastName" name="lastName" placeholder=""
                                    value="${sessionScope.authentication.userData.lastName}" required>
                             <div class="invalid-feedback">Valid last name is required.</div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="firstName" class="form-label">First name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
+                                   value="${sessionScope.authentication.userData.firstName}" required>
+                            <div class="invalid-feedback">Valid first name is required.</div>
                         </div>
                         <div class="col-sm-3">
                             <label for="middleName" class="form-label">Middle name</label>

@@ -1,27 +1,23 @@
 package by.freebook.service.bean;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@With
+@Builder
 @Data
-public class UserDataBean extends Bean {
+public class UserDataBean {
+    private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
     private Date age;
-
-    public UserDataBean withId(Integer id) {
-        setId(id);
-        return this;
-    }
 
 }

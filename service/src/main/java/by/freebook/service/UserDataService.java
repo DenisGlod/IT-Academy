@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UserDataService {
     List<UserDataBean> getAllUserData();
 
-    Optional<UserDataBean> findById(Integer id);
+    Optional<UserDataBean> findById(Long id);
 
     Optional<UserDataBean> save(UserDataBean bean);
 

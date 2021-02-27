@@ -1,25 +1,27 @@
 package by.freebook.dao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.ManyToMany;
+import java.util.HashSet;
+import java.util.Set;
 
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@With
+@Builder
 @Data
 @Entity
-public class Book implements Serializable {
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,5 +50,8 @@ public class Book implements Serializable {
 
     @Column(nullable = false)
     private String description;
+
+    @ManyToMany(mappedBy = "books")
+    private Set<User> users = new HashSet<>();
 
 }

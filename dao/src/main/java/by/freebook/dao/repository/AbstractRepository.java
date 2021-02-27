@@ -10,9 +10,9 @@ import java.util.Optional;
 @Slf4j
 public abstract class AbstractRepository<T> implements Repository<T> {
 
-    private static final String ID = "id";
-
     private final EntityManagerHelper helper = EntityManagerHelper.getInstance();
+
+    private static final String ID = "id";
 
     protected abstract TypedQuery<T> findAllQuery();
 
@@ -36,7 +36,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
     }
 
     @Override
-    public Optional<T> find(Integer id) {
+    public Optional<T> find(Long id) {
         var em = helper.getEntityManager();
         T result = null;
         try {
@@ -75,7 +75,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
         var em = helper.getEntityManager();
         try {
             em.getTransaction().begin();
-            em.merge(entity);
+            entity = em.merge(entity);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -87,7 +87,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
     }
 
     @Override
-    public Optional<T> remove(Integer id) {
+    public Optional<T> remove(Long id) {
         Optional<T> result = Optional.empty();
         var em = helper.getEntityManager();
         try {

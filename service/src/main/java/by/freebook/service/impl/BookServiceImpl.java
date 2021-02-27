@@ -15,8 +15,7 @@ public class BookServiceImpl implements BookService {
     public List<BookBean> getAllBook() {
         BookRepositoryImpl bookRepository = BookRepositoryImpl.getInstance();
         List<Book> listBookEntity = bookRepository.findAll();
-        List<BookBean> listBookBean = Converter.bookEntityListToBookBeanList(listBookEntity);
-        return listBookBean;
+        return Converter.bookEntityListToBookBeanList(listBookEntity);
     }
 
     @Override

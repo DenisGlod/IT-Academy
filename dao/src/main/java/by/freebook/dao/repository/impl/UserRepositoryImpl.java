@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.TypedQuery;
+import java.util.Optional;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -25,6 +26,26 @@ public class UserRepositoryImpl extends AbstractRepository<User> implements User
     protected TypedQuery<User> findQuery() {
         return helper.getEntityManager()
                 .createQuery("from User where id = :id", User.class);
+    }
+
+    @Override
+    public Optional<User> findUserByLoginPassword(User entity) {
+        var em = helper.getEntityManager();
+        User result = null;
+        try {
+            em.getTransaction().begin();
+            result = em.createQuery("from User where email = :email and password = :password", User.class)
+                    .setParameter("email", entity.getEmail())
+                    .setParameter("password", entity.getPassword())
+                    .getSingleResult();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            log.error(e.getMessage(), e);
+        } finally {
+            em.close();
+        }
+        return Optional.ofNullable(result);
     }
 
     private static class UserRepositoryImplHolder {

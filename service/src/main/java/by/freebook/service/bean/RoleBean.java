@@ -1,22 +1,19 @@
 package by.freebook.service.bean;
 
+import by.freebook.dao.entity.RoleEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@With
+@Builder
 @Data
-public class RoleBean extends Bean {
-    private String role;
-
-    public RoleBean withId(Integer id) {
-        setId(id);
-        return this;
-    }
+public class RoleBean {
+    private Long id;
+    private RoleEnum role;
 
 }

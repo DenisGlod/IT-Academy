@@ -14,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 
 @Slf4j
 public abstract class HttpUTF8Filter extends GenericFilter {
-    private static final long serialVersionUID = -3761779933949864315L;
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)

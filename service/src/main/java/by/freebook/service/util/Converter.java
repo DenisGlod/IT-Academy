@@ -20,108 +20,109 @@ public class Converter {
 
     public static User userBeanToUserEntity(UserBean bean) {
         log.info("UserBean -> {}", bean.toString());
-        User user = new User()
-                .withEmail(bean.getEmail())
-                .withPassword(bean.getPassword());
+        User user = User.builder()
+                .id(bean.getId())
+                .email(bean.getEmail())
+                .password(bean.getPassword())
+                .build();
         if (bean.getRole() != null) {
             user.setRole(roleBeanToRoleEntity(bean.getRole()));
         }
         if (bean.getUserData() != null) {
             user.setUserData(userDataBeanToUserDataEntity(bean.getUserData()));
         }
-        user = user.withId(bean.getId());
         log.info("UserEntity -> {}", user.toString());
         return user;
     }
 
     public static Role roleBeanToRoleEntity(RoleBean bean) {
-        Role role = new Role()
-                .withRole(bean.getRole())
-                .withId(bean.getId());
-        return role;
+        return Role.builder()
+                .id(bean.getId())
+                .name(bean.getRole())
+                .build();
     }
 
     public static UserData userDataBeanToUserDataEntity(UserDataBean bean) {
-        UserData userData = new UserData()
-                .withFirstName(bean.getFirstName())
-                .withLastName(bean.getLastName())
-                .withMiddleName(bean.getMiddleName());
+        UserData userData = UserData.builder()
+                .id(bean.getId())
+                .firstName(bean.getFirstName())
+                .lastName(bean.getLastName())
+                .middleName(bean.getMiddleName())
+                .build();
         if (Objects.nonNull(bean.getAge())) {
-            userData = userData.withAge(new Date(bean.getAge().getTime()));
+            userData.setAge(new Date(bean.getAge().getTime()));
         }
-        userData = userData.withId(bean.getId());
         return userData;
     }
 
     public static UserBean userEntityToUserBean(User entity) {
         log.info("UserEntity -> {}", entity.toString());
-        UserBean user = new UserBean()
-                .withEmail(entity.getEmail())
-                .withPassword(entity.getPassword())
-                .withRole(
-                        new RoleBean()
-                                .withId(entity.getRole().getId()))
-                .withUserData(
-                        new UserDataBean()
-                                .withId(entity.getUserData().getId()))
-                .withId(entity.getId());
+        UserBean user = UserBean.builder()
+                .id(entity.getId())
+                .email(entity.getEmail())
+                .password(entity.getPassword())
+                .role(
+                        roleEntityToRoleBean(entity.getRole()))
+                .userData(
+                        userDataEntityToUserDataBean(entity.getUserData()))
+                .build();
         log.info("UserBean -> {}", user.toString());
         return user;
     }
 
     public static RoleBean roleEntityToRoleBean(Role entity) {
-        RoleBean role = new RoleBean()
-                .withRole(entity.getRole())
-                .withId(entity.getId());
-        return role;
+        return RoleBean.builder()
+                .id(entity.getId())
+                .role(entity.getName())
+                .build();
     }
 
     public static UserDataBean userDataEntityToUserDataBean(UserData entity) {
-        UserDataBean userData = new UserDataBean()
-                .withFirstName(entity.getFirstName())
-                .withLastName(entity.getLastName())
-                .withMiddleName(entity.getMiddleName());
+        UserDataBean userData = UserDataBean.builder()
+                .id(entity.getId())
+                .firstName(entity.getFirstName())
+                .lastName(entity.getLastName())
+                .middleName(entity.getMiddleName())
+                .build();
         if (Objects.nonNull(entity.getAge())) {
-            userData = userData.withAge(new java.util.Date(entity.getAge().getTime()));
+            userData.setAge(new java.util.Date(entity.getAge().getTime()));
         }
-        userData = userData.withId(entity.getId());
         return userData;
     }
 
     public static List<BookBean> bookEntityListToBookBeanList(List<Book> listBookEntity) {
         var resultList = new ArrayList<BookBean>();
-        listBookEntity.forEach(bookEntity -> {
-            resultList.add(bookEntityToBookBean(bookEntity));
-        });
+        listBookEntity.forEach(bookEntity -> resultList.add(bookEntityToBookBean(bookEntity)));
         return resultList;
     }
 
     public static BookBean bookEntityToBookBean(Book bookEntity) {
-        BookBean bookBean = new BookBean()
-                .withName(bookEntity.getName())
-                .withAuthor(bookEntity.getAuthor())
-                .withPublisher(bookEntity.getPublisher())
-                .withBinding(bookEntity.getBinding())
-                .withAgeRestrictions(bookEntity.getAgeRestrictions())
-                .withIsbn(bookEntity.getIsbn())
-                .withDescription(bookEntity.getDescription())
-                .withPublishingYear(bookEntity.getPublishingYear())
-                .withId(bookEntity.getId());
-        return bookBean;
+        return BookBean.builder()
+                .id(bookEntity.getId())
+                .name(bookEntity.getName())
+                .author(bookEntity.getAuthor())
+                .publisher(bookEntity.getPublisher())
+                .binding(bookEntity.getBinding())
+                .ageRestrictions(bookEntity.getAgeRestrictions())
+                .isbn(bookEntity.getIsbn())
+                .description(bookEntity.getDescription())
+                .publishingYear(bookEntity.getPublishingYear())
+                .build();
+
     }
 
     public static Book bookBeanToBookEntity(BookBean bookBean) {
-        Book bookEntity = new Book()
-                .withName(bookBean.getName())
-                .withAuthor(bookBean.getAuthor())
-                .withPublisher(bookBean.getPublisher())
-                .withBinding(bookBean.getBinding())
-                .withAgeRestrictions(bookBean.getAgeRestrictions())
-                .withIsbn(bookBean.getIsbn())
-                .withDescription(bookBean.getDescription())
-                .withPublishingYear(bookBean.getPublishingYear())
-                .withId(bookBean.getId());
-        return bookEntity;
+        return Book.builder()
+                .id(bookBean.getId())
+                .name(bookBean.getName())
+                .author(bookBean.getAuthor())
+                .publisher(bookBean.getPublisher())
+                .binding(bookBean.getBinding())
+                .ageRestrictions(bookBean.getAgeRestrictions())
+                .isbn(bookBean.getIsbn())
+                .description(bookBean.getDescription())
+                .publishingYear(bookBean.getPublishingYear())
+                .build();
     }
 
 }

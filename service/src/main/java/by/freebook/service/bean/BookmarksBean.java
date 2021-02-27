@@ -1,22 +1,18 @@
 package by.freebook.service.bean;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.With;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@With
+@Builder
 @Data
-public class BookmarksBean extends Bean {
+public class BookmarksBean {
     private BookBean book;
     private UserBean user;
 
-    public BookmarksBean withId(Integer id) {
-        setId(id);
-        return this;
-    }
 }
