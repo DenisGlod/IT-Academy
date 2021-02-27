@@ -48,7 +48,7 @@ public class Book {
     @Column(precision = 4)
     private Integer publishingYear;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1500)
     private String description;
 
     @ManyToMany(mappedBy = "books")
