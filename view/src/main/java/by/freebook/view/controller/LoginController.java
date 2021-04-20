@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet("/login.do")
 public class LoginController extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+/*    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         log.info("Start LoginController");
         HttpSession session = request.getSession(false);
@@ -40,6 +40,6 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect(request.getContextPath().concat(Constant.PAGE_USER));
             }
         }
-    }
+    }*/
 
 }

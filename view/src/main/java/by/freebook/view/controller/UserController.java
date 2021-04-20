@@ -21,7 +21,7 @@ import java.util.Optional;
 @WebServlet("/page/user.do")
 public class UserController extends HttpServlet {
 
-    @Override
+/*    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String parameter = req.getParameter(Constant.ACTION);
         switch (parameter) {
@@ -81,6 +81,6 @@ public class UserController extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO Auto-generated method stub
         super.doDelete(req, resp);
-    }
+    }*/
 
 }
