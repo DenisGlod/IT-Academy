@@ -1,5 +1,6 @@
 package by.freebook.service.impl;
 
+import by.freebook.dao.entity.User;
 import by.freebook.dao.repository.UserRepository;
 import by.freebook.service.UserService;
 import by.freebook.service.bean.UserBean;
@@ -24,22 +25,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserBean> findUserById(Long id) {
-        return Optional.empty();
+    public UserBean findUserById(Long id) {
+        var userOptional = repository.findUserById(id);
+        return userOptional.map(Converter::userEntityToUserBean).orElse(null);
     }
 
     @Override
-    public Optional<UserBean> login(UserBean bean) {
-        return Optional.empty();
+    public UserBean login(UserBean bean) {
+        return null;
     }
 
     @Override
-    public Optional<UserBean> save(UserBean bean) {
-        return Optional.empty();
+    public UserBean save(UserBean bean) {
+        return null;
     }
 
     @Override
-    public Optional<UserBean> delete(UserBean bean) {
-        return Optional.empty();
+    public UserBean delete(UserBean bean) {
+        return null;
     }
 }
