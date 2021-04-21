@@ -28,6 +28,9 @@ public class ApplicationConfig {
     @Value("${url}")
     private String url;
 
+    @Value("${hbm2ddl.charset_name}")
+    private String hbm2ddlCharsetName;
+
     @Value("${driver_class}")
     private String driverClass;
 
@@ -107,19 +110,20 @@ public class ApplicationConfig {
     @Bean
     public Properties jpaProperties() {
         Properties props = new Properties();
-        props.setProperty("current_session_context_class", currentSessionContextClass);
+        props.setProperty("hibernate.hbm2ddl.charset_name", hbm2ddlCharsetName);
+        props.setProperty("hibernate.current_session_context_class", currentSessionContextClass);
         props.setProperty("hibernate.dialect", dialect);
-        props.setProperty("hbm2ddl.auto", hbm2ddlAuto);
-        props.setProperty("hbm2ddl.import_files", hbm2ddlImportFiles);
+        props.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
+        props.setProperty("hibernate.hbm2ddl.import_files", hbm2ddlImportFiles);
         props.setProperty("hibernate.default_catalog", defaultCatalog);
         props.setProperty("hibernate.default_schema", defaultSchema);
-        props.setProperty("show_sql", showSql);
-        props.setProperty("format_sql", formatSql);
-        props.setProperty("c3p0.min_size", c3p0MinSize);
-        props.setProperty("c3p0.max_size", c3p0MaxSize);
-        props.setProperty("c3p0.timeout", c3p0Timeout);
-        props.setProperty("c3p0.acquire_increment", c3p0AcquireIncrement);
-        props.setProperty("c3p0.idle_test_period", c3p0IdleTestPeriod);
+        props.setProperty("hibernate.show_sql", showSql);
+        props.setProperty("hibernate.format_sql", formatSql);
+        props.setProperty("hibernate.c3p0.min_size", c3p0MinSize);
+        props.setProperty("hibernate.c3p0.max_size", c3p0MaxSize);
+        props.setProperty("hibernate.c3p0.timeout", c3p0Timeout);
+        props.setProperty("hibernate.c3p0.acquire_increment", c3p0AcquireIncrement);
+        props.setProperty("hibernate.c3p0.idle_test_period", c3p0IdleTestPeriod);
         return props;
     }
 
