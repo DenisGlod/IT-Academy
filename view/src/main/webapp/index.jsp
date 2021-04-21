@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <c:import url="/WEB-INF/part/head.jsp"/>
+    <c:import url="/part/head.jsp"/>
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
@@ -33,6 +33,6 @@
         <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
     </form>
 </main>
-<c:import url="/WEB-INF/part/script.jsp"/>
+<c:import url="/part/script.jsp"/>
 </body>
 </html>

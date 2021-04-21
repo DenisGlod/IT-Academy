@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UserService {
     List<UserBean> getAllUser();
 
-    Optional<UserBean> findById(Integer id);
+    Optional<UserBean> findUserById(Long id);
 
     Optional<UserBean> login(UserBean bean);
 

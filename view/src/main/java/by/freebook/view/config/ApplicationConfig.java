@@ -1,8 +1,11 @@
-package by.freebook.dao.config;
+package by.freebook.view.config;
 
 import com.mchange.v2.c3p0.DriverManagerDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -10,14 +13,16 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@PropertySource("classpath:db.properties")
-@EnableJpaRepositories(basePackages = "by.freebook.dao.repository")
-@EnableWebMvc
 @Configuration
+@ComponentScan("by.freebook")
+@EnableWebMvc
+@EnableJpaRepositories(basePackages = "by.freebook.dao.repository")
+@PropertySource("classpath:db.properties")
 public class ApplicationConfig {
 
     @Value("${url}")
@@ -26,10 +31,10 @@ public class ApplicationConfig {
     @Value("${driver_class}")
     private String driverClass;
 
-    @Value("${username}")
+    @Value("${connection.username}")
     private String user;
 
-    @Value("${password}")
+    @Value("${connection.password}")
     private String password;
 
     @Value("${current_session_context_class}")
@@ -89,7 +94,8 @@ public class ApplicationConfig {
         return jpaTransactionManager;
     }
 
-    private DataSource dataSource() {
+    @Bean
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setJdbcUrl(url);
         dataSource.setDriverClass(driverClass);
@@ -98,10 +104,11 @@ public class ApplicationConfig {
         return dataSource;
     }
 
-    private Properties jpaProperties() {
+    @Bean
+    public Properties jpaProperties() {
         Properties props = new Properties();
         props.setProperty("current_session_context_class", currentSessionContextClass);
-        props.setProperty("dialect", dialect);
+        props.setProperty("hibernate.dialect", dialect);
         props.setProperty("hbm2ddl.auto", hbm2ddlAuto);
         props.setProperty("hbm2ddl.import_files", hbm2ddlImportFiles);
         props.setProperty("hibernate.default_catalog", defaultCatalog);
@@ -115,4 +122,11 @@ public class ApplicationConfig {
         props.setProperty("c3p0.idle_test_period", c3p0IdleTestPeriod);
         return props;
     }
+
+/*    @Bean
+    public InternalResourceViewResolver internalResourceViewResolver(@Autowired ApplicationContext ctx) {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setApplicationContext(ctx);
+        return resolver;
+    }*/
 }

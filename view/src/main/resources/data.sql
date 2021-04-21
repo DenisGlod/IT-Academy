@@ -1,5 +1,3 @@
-SET CLIENT_ENCODING = 'UTF-8';
-
 INSERT INTO role (name) VALUES ('ADMIN');
 INSERT INTO role (name) VALUES ('MODERATOR');
 INSERT INTO role (name) VALUES ('USER');

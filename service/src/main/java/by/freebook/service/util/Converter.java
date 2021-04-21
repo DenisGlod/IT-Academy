@@ -35,10 +35,38 @@ public class Converter {
         return user;
     }
 
+    public static UserBean userEntityToUserBean(User entity) {
+        log.info("UserEntity -> {}", entity.toString());
+        UserBean user = UserBean.builder()
+                .id(entity.getId())
+                .email(entity.getEmail())
+                .password(entity.getPassword())
+                .role(
+                        roleEntityToRoleBean(entity.getRole()))
+                .userData(
+                        userDataEntityToUserDataBean(entity.getUserData()))
+                .build();
+        log.info("UserBean -> {}", user.toString());
+        return user;
+    }
+
+    public static List<UserBean> userEntityToUserBean(List<User> entity) {
+        List<UserBean> userBeanList = new ArrayList<>();
+        entity.forEach(item -> userBeanList.add(userEntityToUserBean(item)));
+        return userBeanList;
+    }
+
     public static Role roleBeanToRoleEntity(RoleBean bean) {
         return Role.builder()
                 .id(bean.getId())
                 .name(bean.getRole())
+                .build();
+    }
+
+    public static RoleBean roleEntityToRoleBean(Role entity) {
+        return RoleBean.builder()
+                .id(entity.getId())
+                .role(entity.getName())
                 .build();
     }
 
@@ -55,28 +83,6 @@ public class Converter {
         return userData;
     }
 
-    public static UserBean userEntityToUserBean(User entity) {
-        log.info("UserEntity -> {}", entity.toString());
-        UserBean user = UserBean.builder()
-                .id(entity.getId())
-                .email(entity.getEmail())
-                .password(entity.getPassword())
-                .role(
-                        roleEntityToRoleBean(entity.getRole()))
-                .userData(
-                        userDataEntityToUserDataBean(entity.getUserData()))
-                .build();
-        log.info("UserBean -> {}", user.toString());
-        return user;
-    }
-
-    public static RoleBean roleEntityToRoleBean(Role entity) {
-        return RoleBean.builder()
-                .id(entity.getId())
-                .role(entity.getName())
-                .build();
-    }
-
     public static UserDataBean userDataEntityToUserDataBean(UserData entity) {
         UserDataBean userData = UserDataBean.builder()
                 .id(entity.getId())
@@ -88,12 +94,6 @@ public class Converter {
             userData.setAge(new java.util.Date(entity.getAge().getTime()));
         }
         return userData;
-    }
-
-    public static List<BookBean> bookEntityListToBookBeanList(List<Book> listBookEntity) {
-        var resultList = new ArrayList<BookBean>();
-        listBookEntity.forEach(bookEntity -> resultList.add(bookEntityToBookBean(bookEntity)));
-        return resultList;
     }
 
     public static BookBean bookEntityToBookBean(Book bookEntity) {
@@ -109,6 +109,12 @@ public class Converter {
                 .publishingYear(bookEntity.getPublishingYear())
                 .build();
 
+    }
+
+    public static List<BookBean> bookEntityToBookBean(List<Book> listBookEntity) {
+        var resultList = new ArrayList<BookBean>();
+        listBookEntity.forEach(bookEntity -> resultList.add(bookEntityToBookBean(bookEntity)));
+        return resultList;
     }
 
     public static Book bookBeanToBookEntity(BookBean bookBean) {

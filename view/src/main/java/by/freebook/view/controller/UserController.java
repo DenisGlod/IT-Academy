@@ -1,25 +1,26 @@
 package by.freebook.view.controller;
 
+import by.freebook.service.UserService;
 import by.freebook.service.bean.UserBean;
-import by.freebook.service.bean.UserDataBean;
-import by.freebook.service.factory.ServiceFactory;
-import by.freebook.view.util.Constant;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Optional;
+import java.util.List;
 
-@Slf4j
-@WebServlet("/page/user.do")
-public class UserController extends HttpServlet {
+@Controller
+@RequiredArgsConstructor
+@RequestMapping(path = "/users", produces = "application/json;charset=UTF-8")
+@ResponseBody
+public class UserController {
+    private final UserService service;
+
+    @GetMapping
+    public List<UserBean> getAllUsers() {
+        return service.getAllUser();
+    }
 
 /*    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
