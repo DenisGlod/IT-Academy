@@ -1,6 +1,5 @@
 package by.freebook.service.impl;
 
-import by.freebook.dao.entity.User;
 import by.freebook.dao.repository.UserRepository;
 import by.freebook.service.UserService;
 import by.freebook.service.bean.UserBean;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -37,7 +35,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserBean save(UserBean bean) {
-        return null;
+        var user = repository.save(Converter.userBeanToUserEntity(bean));
+        return Converter.userEntityToUserBean(user);
     }
 
     @Override
