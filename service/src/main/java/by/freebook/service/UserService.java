@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface UserService {
     List<UserBean> getAllUser();
 
-    UserBean findUserById(Long id);
+    Optional<UserBean> findUserById(Long id);
 
-    UserBean login(UserBean bean);
+    Optional<UserBean> login(String email, String password);
 
     UserBean save(UserBean bean);
 
-    UserBean delete(UserBean bean);
+    Optional<UserBean> delete(UserBean bean);
 }

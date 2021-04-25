@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,14 +24,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserBean findUserById(Long id) {
+    public Optional<UserBean> findUserById(Long id) {
         var userOptional = repository.findUserById(id);
-        return userOptional.map(Converter::userEntityToUserBean).orElse(null);
+        return userOptional.map(Converter::userEntityToUserBean);
     }
 
     @Override
-    public UserBean login(UserBean bean) {
-        return null;
+    public Optional<UserBean> login(String email, String password) {
+        var userOptional = repository.findUserByEmailAndPassword(email, password);
+        return userOptional.map(Converter::userEntityToUserBean);
     }
 
     @Override
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserBean delete(UserBean bean) {
-        return null;
+    public Optional<UserBean> delete(UserBean bean) {
+        return Optional.empty();
     }
 }
