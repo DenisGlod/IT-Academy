@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -11,7 +14,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @RequiredArgsConstructor
-public class ThymeleafConfig {
+public class ThymeleafConfig implements WebMvcConfigurer {
 
     private ApplicationContext applicationContext;
 
@@ -40,5 +43,13 @@ public class ThymeleafConfig {
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setContentType("text/html;charset=UTF-8");
         return viewResolver;
+    }
+
+    @Override
+    public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {
+        WebMvcConfigurer.super.addResourceHandlers(registry);
+        registry.addResourceHandler("/img/**").addResourceLocations("/img/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
     }
 }
