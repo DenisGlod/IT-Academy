@@ -36,6 +36,6 @@ public class Role {
     private RoleEnum name;
 
     @OneToMany(mappedBy = "role")
-    private Set<User> users = new HashSet<>();
+    private final Set<User> users = new HashSet<>();
 
 }

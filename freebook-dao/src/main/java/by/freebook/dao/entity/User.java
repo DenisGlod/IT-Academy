@@ -60,5 +60,5 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_user_id")),
             inverseJoinColumns = @JoinColumn(name = "book_id", foreignKey = @ForeignKey(name = "fk_book_id"))
     )
-    private Set<Book> books = new HashSet<>();
+    private final Set<Book> books = new HashSet<>();
 }

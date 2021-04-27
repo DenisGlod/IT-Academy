@@ -52,6 +52,6 @@ public class Book {
     private String description;
 
     @ManyToMany(mappedBy = "books")
-    private Set<User> users = new HashSet<>();
+    private final Set<User> users = new HashSet<>();
 
 }
