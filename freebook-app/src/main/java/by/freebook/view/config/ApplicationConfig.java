@@ -1,20 +1,23 @@
 package by.freebook.view.config;
 
-import com.mchange.v2.c3p0.DriverManagerDataSource;
+import com.zaxxer.hikari.HikariDataSource;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jndi.JndiTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.sql.DataSource;
 import java.util.Properties;
 
+@Slf4j
 @Configuration
 @ComponentScan("by.freebook")
 @EnableWebMvc
@@ -22,20 +25,11 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 public class ApplicationConfig {
 
-    @Value("${url}")
-    private String url;
+    @Value("${jndi}")
+    private String jndi;
 
     @Value("${hbm2ddl.charset_name}")
     private String hbm2ddlCharsetName;
-
-    @Value("${driver_class}")
-    private String driverClass;
-
-    @Value("${connection.username}")
-    private String user;
-
-    @Value("${connection.password}")
-    private String password;
 
     @Value("${current_session_context_class}")
     private String currentSessionContextClass;
@@ -61,21 +55,6 @@ public class ApplicationConfig {
     @Value("${format_sql}")
     private String formatSql;
 
-    @Value("${c3p0.min_size}")
-    private String c3p0MinSize;
-
-    @Value("${c3p0.max_size}")
-    private String c3p0MaxSize;
-
-    @Value("${c3p0.timeout}")
-    private String c3p0Timeout;
-
-    @Value("${c3p0.acquire_increment}")
-    private String c3p0AcquireIncrement;
-
-    @Value("${c3p0.idle_test_period}")
-    private String c3p0IdleTestPeriod;
-
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
@@ -94,33 +73,24 @@ public class ApplicationConfig {
         return jpaTransactionManager;
     }
 
+    @SneakyThrows
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setJdbcUrl(url);
-        dataSource.setDriverClass(driverClass);
-        dataSource.setUser(user);
-        dataSource.setPassword(password);
-        return dataSource;
+    public HikariDataSource dataSource() {
+        return new JndiTemplate().lookup(jndi, HikariDataSource.class);
     }
 
     @Bean
     public Properties jpaProperties() {
         Properties props = new Properties();
-        props.setProperty("hibernate.hbm2ddl.charset_name", hbm2ddlCharsetName);
         props.setProperty("hibernate.current_session_context_class", currentSessionContextClass);
         props.setProperty("hibernate.dialect", dialect);
+        props.setProperty("hibernate.hbm2ddl.charset_name", hbm2ddlCharsetName);
         props.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
         props.setProperty("hibernate.hbm2ddl.import_files", hbm2ddlImportFiles);
         props.setProperty("hibernate.default_catalog", defaultCatalog);
         props.setProperty("hibernate.default_schema", defaultSchema);
         props.setProperty("hibernate.show_sql", showSql);
         props.setProperty("hibernate.format_sql", formatSql);
-        props.setProperty("hibernate.c3p0.min_size", c3p0MinSize);
-        props.setProperty("hibernate.c3p0.max_size", c3p0MaxSize);
-        props.setProperty("hibernate.c3p0.timeout", c3p0Timeout);
-        props.setProperty("hibernate.c3p0.acquire_increment", c3p0AcquireIncrement);
-        props.setProperty("hibernate.c3p0.idle_test_period", c3p0IdleTestPeriod);
         return props;
     }
 }
