@@ -34,6 +34,7 @@
         <spring.version>5.3.6</spring.version>
         <spring-data-jpa.version>2.5.0</spring-data-jpa.version>
         <thymeleaf-spring5.version>3.0.12.RELEASE</thymeleaf-spring5.version>
+        <bootstrap.version>5.0.0-beta3</bootstrap.version>
     </properties>
 
     <dependencyManagement>
@@ -114,6 +115,11 @@
                 <groupId>org.thymeleaf</groupId>
                 <artifactId>thymeleaf-spring5</artifactId>
                 <version>${thymeleaf-spring5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>${bootstrap.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
